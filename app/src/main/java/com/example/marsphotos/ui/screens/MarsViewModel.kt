@@ -37,7 +37,7 @@ class MarsViewModel : ViewModel() {
 
 
     /**
-     * Call getMarsPhotos() on init so we can display status immediately.
+     * Call getMarsPhotos() on init so we can display status immediately!.
      */
     init {
         getMarsPhotos()
