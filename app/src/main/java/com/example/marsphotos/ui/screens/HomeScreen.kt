@@ -20,6 +20,13 @@ import androidx.compose.ui.unit.dp
 import com.example.marsphotos.R
 import com.example.marsphotos.ui.theme.MarsPhotosTheme
 
+
+/**
+ * A composable function that displays different screens based on the state of MarsUiState.
+ *
+ * @param marsUiState The state of the Mars UI.
+ * @param modifier The modifier to be applied to the layout composable.
+ */
 @Composable
 fun HomeScreen(
     marsUiState: MarsUiState,
@@ -35,6 +42,12 @@ fun HomeScreen(
     }
 }
 
+
+/**
+ * A composable function that displays a loading image.
+ *
+ * @param modifier The modifier to be applied to the image composable.
+ */
 @Composable
 fun LoadingScreen(modifier: Modifier = Modifier) {
     Image(
@@ -43,6 +56,12 @@ fun LoadingScreen(modifier: Modifier = Modifier) {
         contentDescription = stringResource(R.string.loading)
     )
 }
+
+/**
+ * A composable function that displays an error image and a text message.
+ *
+ * @param modifier The modifier to be applied to the layout composable.
+ */
 @Composable
 fun ErrorScreen(modifier: Modifier = Modifier) {
     Column(
@@ -58,7 +77,10 @@ fun ErrorScreen(modifier: Modifier = Modifier) {
 }
 
 /**
- * ResultScreen displaying number of photos retrieved.
+ * A composable function that displays the number of photos retrieved.
+ *
+ * @param photos The number of photos retrieved.
+ * @param modifier The modifier to be applied to the layout composable.
  */
 @Composable
 fun ResultScreen(photos: String, modifier: Modifier = Modifier) {
@@ -70,6 +92,9 @@ fun ResultScreen(photos: String, modifier: Modifier = Modifier) {
     }
 }
 
+/**
+ * A preview composable function for ResultScreen.
+ */
 @Preview(showBackground = true)
 @Composable
 fun ResultScreenPreview() {

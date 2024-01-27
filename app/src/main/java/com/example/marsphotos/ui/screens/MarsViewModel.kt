@@ -23,13 +23,12 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import java.io.IOException
 
-sealed interface MarsUiState {
-    data class Success(val photos: String) : MarsUiState
-    object Error : MarsUiState
-    object Loading : MarsUiState
-}
 
-
+/**
+ * A ViewModel class for the Mars photos.
+ *
+ * @property marsUiState The mutable state that stores the status of the most recent request.
+ */
 class MarsViewModel : ViewModel() {
     /** The mutable State that stores the status of the most recent request */
     var marsUiState: MarsUiState by mutableStateOf(MarsUiState.Loading)
