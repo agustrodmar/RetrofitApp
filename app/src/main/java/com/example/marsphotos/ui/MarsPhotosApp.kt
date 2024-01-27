@@ -37,6 +37,18 @@ import com.example.marsphotos.R
 import com.example.marsphotos.ui.screens.HomeScreen
 import com.example.marsphotos.ui.screens.MarsViewModel
 
+/**
+ * A composable function that creates a top app bar with a center-aligned title.
+ *
+ * @param scrollBehavior The scroll behavior for the top app bar.
+ * @param title The title for the top app bar.
+ * @param modifier The modifier to be applied to the top app bar.
+ * @param navigationIcon The navigation icon for the top app bar.
+ * @param actions The actions for the top app bar.
+ * @param backgroundColor The background color for the top app bar.
+ * @param contentColor The content color for the top app bar.
+ * @param elevation The elevation for the top app bar.
+ */
 @Composable
 fun MarsPhotosApp() {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -56,6 +68,13 @@ fun MarsPhotosApp() {
     }
 }
 
+/**
+ * A composable function that creates a custom top app bar for the Mars Photos app.
+ * This function uses CenterAlignedTopAppBar to center-align the title.
+ *
+ * @param scrollBehavior The scroll behavior for the top app bar.
+ * @param modifier The modifier to be applied to the top app bar.
+ */
 @Composable
 fun MarsTopAppBar(scrollBehavior: TopAppBarScrollBehavior, modifier: Modifier = Modifier) {
     CenterAlignedTopAppBar(
