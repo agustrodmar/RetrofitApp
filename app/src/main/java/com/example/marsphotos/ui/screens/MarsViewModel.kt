@@ -34,9 +34,8 @@ class MarsViewModel : ViewModel() {
     var marsUiState: MarsUiState by mutableStateOf(MarsUiState.Loading)
         private set
 
-
     /**
-     * Call getMarsPhotos() on init so we can display status immediately!.
+     * Call getMarsPhotos() on init so we can display status immediately.
      */
     init {
         getMarsPhotos()
@@ -44,17 +43,15 @@ class MarsViewModel : ViewModel() {
 
     /**
      * Gets Mars photos information from the Mars API Retrofit service and updates the
-     * [MarsPhoto] [List] [MutableList].
+     * [marsUiState] accordingly.
      */
     private fun getMarsPhotos() {
         viewModelScope.launch {
-            try {
+            marsUiState = try {
                 val listResult = MarsApi.retrofitService.getPhotos()
-                marsUiState = MarsUiState.Success(
-                    "Success: ${listResult.size} Mars photos retrieved"
-                )
+                MarsUiState.Success(listResult)
             } catch (e: IOException) {
-                "Error"
+                MarsUiState.Error
             }
         }
     }

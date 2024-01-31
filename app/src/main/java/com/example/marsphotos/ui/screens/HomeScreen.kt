@@ -3,22 +3,31 @@ package com.example.marsphotos.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberAsyncImagePainter
 import com.example.marsphotos.R
+import com.example.marsphotos.network.MarsPhoto
 import com.example.marsphotos.ui.theme.MarsPhotosTheme
+
+
 
 
 /**
@@ -83,15 +92,13 @@ fun ErrorScreen(modifier: Modifier = Modifier) {
  * @param modifier The modifier to be applied to the layout composable.
  */
 @Composable
-fun ResultScreen(photos: String, modifier: Modifier = Modifier) {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = modifier
-    ) {
-        Text(text = photos)
+fun ResultScreen(photos: List<MarsPhoto>, modifier: Modifier = Modifier) {
+    LazyColumn(modifier = modifier) {
+        items(photos) { photo ->
+            ImageCard(photo = photo)
+        }
     }
 }
-
 /**
  * A preview composable function for ResultScreen.
  */
@@ -99,6 +106,33 @@ fun ResultScreen(photos: String, modifier: Modifier = Modifier) {
 @Composable
 fun ResultScreenPreview() {
     MarsPhotosTheme {
-        ResultScreen(stringResource(R.string.placeholder_result))
+        val previewPhotos = listOf(
+            MarsPhoto(id = "1", imgSrc = "https://example.com/photo1.jpg"),
+            MarsPhoto(id = "2", imgSrc = "https://example.com/photo2.jpg")
+        )
+        ResultScreen(previewPhotos)
     }
 }
+
+
+/**
+ * A composable function that displays an ImageCard with the given MarsPhoto.
+ *
+ * @param photo The MarsPhoto to be displayed.
+ */
+@Composable
+fun ImageCard(photo: MarsPhoto) {
+    Card(
+        shape = RoundedCornerShape(4.dp),
+        modifier = Modifier.padding(8.dp)
+    ) {
+        Image(
+            painter = rememberAsyncImagePainter(model = photo.imgSrc),
+            contentDescription = "Mars Photo ID: ${photo.id}",
+            modifier = Modifier.height(200.dp),
+            contentScale = ContentScale.Crop
+        )
+    }
+}
+
+
